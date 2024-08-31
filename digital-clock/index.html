@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Orbitron", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 900;
+            font-style: normal;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="container mx-auto w-full max-w-96 flex items-center justify-center h-screen">
+        <p class="clock py-8 text-center text-4xl text-black rounded-lg"></p>
+    </div>
+    <script>
+        ; (function () {
+            setInterval(() => {
+                const date = new Date();
+                const hours = date.getHours() % 12;
+                const formattedHour = hours < 10 ? '0' + hours : hours;
+                const formattedMinute = date.getMinutes() >= 10 ? date.getMinutes() : `0${date.getMinutes()}`;
+                const formatedSecond = date.getSeconds() >= 10 ? date.getSeconds() : `0${date.getSeconds()}`;
+                const amPm = date.getHours() > 12 ? 'PM' : 'AM';
+
+                const element = document.querySelector('.clock');
+
+                element.innerHTML = `${formattedHour}:${formattedMinute}:${formatedSecond} ${amPm}`;
+            }, 1000);
+        })();
+    </script>
+</body>
+
+</html>
